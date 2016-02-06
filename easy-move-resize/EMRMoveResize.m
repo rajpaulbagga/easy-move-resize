@@ -22,6 +22,8 @@
 - init {
     _window = nil;
     _runLoopSource = nil;
+    [self setMoveMouseButton:eLeftMouseButton];
+    [self setResizeMouseButton:eRightMouseButton];
     return self;
 }
 
@@ -43,6 +45,38 @@
     if (_runLoopSource != nil) CFRelease(_runLoopSource);
     if (runLoopSource != nil) CFRetain(runLoopSource);
     _runLoopSource = runLoopSource;
+}
+
+- (void) setMoveMouseButton:(eMouseButton)mouseButton {
+    switch (mouseButton) {
+        default:
+        case eLeftMouseButton:
+            [self setEventMoveMouseUp: kCGEventLeftMouseUp];
+            [self setEventMoveMouseDown: kCGEventLeftMouseDown];
+            [self setEventMoveMouseDragged: kCGEventLeftMouseDragged];
+            break;
+        case eRightMouseButton:
+            [self setEventMoveMouseUp: kCGEventRightMouseUp];
+            [self setEventMoveMouseDown: kCGEventRightMouseDown];
+            [self setEventMoveMouseDragged: kCGEventRightMouseDragged];
+            break;
+    }
+}
+
+- (void) setResizeMouseButton:(eMouseButton)mouseButton {
+    switch (mouseButton) {
+        case eLeftMouseButton:
+            [self setEventResizeMouseUp: kCGEventLeftMouseUp];
+            [self setEventResizeMouseDown: kCGEventLeftMouseDown];
+            [self setEventResizeMouseDragged: kCGEventLeftMouseDragged];
+            break;
+        default:
+        case eRightMouseButton:
+            [self setEventResizeMouseUp: kCGEventRightMouseUp];
+            [self setEventResizeMouseDown: kCGEventRightMouseDown];
+            [self setEventResizeMouseDragged: kCGEventRightMouseDragged];
+            break;
+    }
 }
 
 - (void)dealloc {

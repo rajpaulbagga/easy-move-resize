@@ -35,8 +35,8 @@ CGEventRef myCGEventCallback(CGEventTapProxy __unused proxy, CGEventType type, C
         return event;
     }
 
-    if (type == kCGEventLeftMouseDown
-            || type == kCGEventRightMouseDown) {
+    if (type == [moveResize eventMoveMouseDown]
+            || type == [moveResize eventResizeMouseDown]) {
         CGPoint mouseLocation = CGEventGetLocation(event);
         [moveResize setTracking:1];
 
@@ -79,7 +79,7 @@ CGEventRef myCGEventCallback(CGEventTapProxy __unused proxy, CGEventType type, C
         if (_clickedWindow != nil) CFRelease(_clickedWindow);
     }
 
-    if (type == kCGEventLeftMouseDragged
+    if (type == [moveResize eventMoveMouseDragged]
             && [moveResize tracking] > 0) {
         [moveResize setTracking:[moveResize tracking] + 1];
         AXUIElementRef _clickedWindow = [moveResize window];
@@ -101,7 +101,7 @@ CGEventRef myCGEventCallback(CGEventTapProxy __unused proxy, CGEventType type, C
         }
     }
 
-    if (type == kCGEventRightMouseDown) {
+    if (type == [moveResize eventResizeMouseDown]) {
         [moveResize setTracking:true];
         AXUIElementRef _clickedWindow = [moveResize window];
 
@@ -146,7 +146,7 @@ CGEventRef myCGEventCallback(CGEventTapProxy __unused proxy, CGEventType type, C
         [moveResize setResizeSection:resizeSection];
     }
 
-    if (type == kCGEventRightMouseDragged
+    if (type == [moveResize eventResizeMouseDragged]
             && [moveResize tracking] > 0) {
         [moveResize setTracking:[moveResize tracking] + 1];
 
@@ -206,8 +206,8 @@ CGEventRef myCGEventCallback(CGEventTapProxy __unused proxy, CGEventType type, C
         }
     }
 
-    if (type == kCGEventLeftMouseUp
-            || type == kCGEventRightMouseUp) {
+    if (type == [moveResize eventMoveMouseUp]
+            || type == [moveResize eventResizeMouseUp]) {
         [moveResize setTracking:0];
     }
 
@@ -260,6 +260,8 @@ CGEventRef myCGEventCallback(CGEventTapProxy __unused proxy, CGEventType type, C
     [moveResize setRunLoopSource:runLoopSource];
     [self enableRunLoopSource:moveResize];
     CFRelease(runLoopSource);
+    [moveResize setMoveMouseButton:[EMRPreferences moveMouseButton]];
+    [moveResize setResizeMouseButton:[EMRPreferences resizeMouseButton]];
 }
 
 -(void)awakeFromNib{

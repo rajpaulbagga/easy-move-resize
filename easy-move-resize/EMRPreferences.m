@@ -67,6 +67,30 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:MODIFIER_FLAGS_DEFAULTS_KEY];
 }
 
++ (eMouseButton) moveMouseButton {
+    eMouseButton button = (eMouseButton)[[NSUserDefaults standardUserDefaults] integerForKey:MOVE_MOUSE_BUTTON_DEFAULTS_KEY];
+    if (button == 0) {
+        button = eLeftMouseButton;
+    }
+    return button;
+}
+
++ (void) setMoveMouseButton:(eMouseButton)button {
+    [[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)button forKey:MOVE_MOUSE_BUTTON_DEFAULTS_KEY];
+}
+
++ (eMouseButton) resizeMouseButton {
+    eMouseButton button = (eMouseButton)[[NSUserDefaults standardUserDefaults] integerForKey:RESIZE_MOUSE_BUTTON_DEFAULTS_KEY];
+    if (button == 0) {
+        button = eRightMouseButton;
+    }
+    return button;
+}
+
++ (void) setResizeMouseButton:(eMouseButton)button {
+    [[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)button forKey:RESIZE_MOUSE_BUTTON_DEFAULTS_KEY];
+}
+
 
 // --------------------------------------------------------------------
 // Private methods

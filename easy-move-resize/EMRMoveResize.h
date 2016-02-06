@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "EMRPreferences.h"
 
 enum ResizeDirectionX {
     right,
@@ -36,5 +37,16 @@ struct ResizeSection {
 @property int tracking;
 @property NSPoint wndPosition;
 @property NSSize wndSize;
+
+@property CGEventType eventMoveMouseDown;
+@property CGEventType eventMoveMouseUp;
+@property CGEventType eventMoveMouseDragged;
+@property CGEventType eventResizeMouseDown;
+@property CGEventType eventResizeMouseUp;
+@property CGEventType eventResizeMouseDragged;
+
+- (void) setMoveMouseButton:(eMouseButton)mouseButton;
+- (void) setResizeMouseButton:(eMouseButton)mouseButton;
+
 
 @end

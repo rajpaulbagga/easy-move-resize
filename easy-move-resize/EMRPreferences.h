@@ -12,11 +12,18 @@
 #define EMRPreferences_h
 
 #define MODIFIER_FLAGS_DEFAULTS_KEY @"ModifierFlags"
+#define MOVE_MOUSE_BUTTON_DEFAULTS_KEY @"MoveMouseButton"
+#define RESIZE_MOUSE_BUTTON_DEFAULTS_KEY @"ResizeMouseButton"
 #define CTRL_KEY @"CTRL"
 #define SHIFT_KEY @"SHIFT"
 #define CAPS_KEY @"CAPS" // CAPS lock
 #define ALT_KEY @"ALT" // Alternate or Option key
 #define CMD_KEY @"CMD"
+
+typedef enum {
+    eLeftMouseButton = 1,
+    eRightMouseButton
+} eMouseButton;
 
 @interface EMRPreferences : NSObject {
     
@@ -31,6 +38,11 @@
 + (NSSet*) getFlagStringSet;
 
 + (void) removeDefaults;
+
++ (eMouseButton) moveMouseButton;
++ (void) setMoveMouseButton:(eMouseButton)button;
++ (eMouseButton) resizeMouseButton;
++ (void) setResizeMouseButton:(eMouseButton)button;
 
 @end
 
