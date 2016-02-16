@@ -1,6 +1,7 @@
 #import "EMRAppDelegate.h"
 #import "EMRMoveResize.h"
 #import "EMRPreferences.h"
+#import "EMRPrefsWindowController.h"
 
 @implementation EMRAppDelegate
 
@@ -228,7 +229,7 @@ CGEventRef myCGEventCallback(CGEventTapProxy __unused proxy, CGEventType type, C
     [self initModifierMenuItems];
 
     // Retrieve the Key press modifier flags to activate move/resize actions.
-    keyModifierFlags = [EMRPreferences modifierFlags];
+    keyModifierFlags = [EMRPreferences moveModifierFlags];
 
     CFRunLoopSourceRef runLoopSource;
 
@@ -267,6 +268,7 @@ CGEventRef myCGEventCallback(CGEventTapProxy __unused proxy, CGEventType type, C
 -(void)awakeFromNib{
     NSImage *icon = [NSImage imageNamed:@"MenuIcon"];
     NSImage *altIcon = [NSImage imageNamed:@"MenuIconHighlight"];
+    prefsWindow = nil;
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     [statusItem setMenu:statusMenu];
     [statusItem setImage:icon];
@@ -292,7 +294,7 @@ CGEventRef myCGEventCallback(CGEventTapProxy __unused proxy, CGEventType type, C
     [_ctrlMenu setState:0];
     [_shiftMenu setState:0];
     [_disabledMenu setState:0];
-    NSSet* flags = [EMRPreferences getFlagStringSet];
+    NSSet* flags = [EMRPreferences moveFlagStringSet];
     if ([flags containsObject:ALT_KEY]) {
         [_altMenu setState:1];
     }
@@ -311,14 +313,14 @@ CGEventRef myCGEventCallback(CGEventTapProxy __unused proxy, CGEventType type, C
     NSMenuItem *menu = (NSMenuItem*)sender;
     NSInteger newState = ![menu state];
     [menu setState:newState];
-    [EMRPreferences setModifierKey:[menu title] enabled:newState];
-    keyModifierFlags = [EMRPreferences modifierFlags];
+    [EMRPreferences setMoveModifierKey:[menu title] enabled:newState];
+    keyModifierFlags = [EMRPreferences moveModifierFlags];
 }
 
 - (IBAction)resetModifiersToDefaults:(id)sender {
     [EMRPreferences removeDefaults];
     [self initModifierMenuItems];
-    keyModifierFlags = [EMRPreferences modifierFlags];
+    keyModifierFlags = [EMRPreferences moveModifierFlags];
 }
 
 - (IBAction)toggleDisabled:(id)sender {
@@ -346,6 +348,14 @@ CGEventRef myCGEventCallback(CGEventTapProxy __unused proxy, CGEventType type, C
     [_cmdMenu setEnabled:enabled];
     [_ctrlMenu setEnabled:enabled];
     [_shiftMenu setEnabled:enabled];
+}
+
+- (IBAction)openPrefs:(id)sender {
+    if (prefsWindow == nil) {
+        prefsWindow = [[EMRPrefsWindowController alloc] initWithWindowNibName:@"EMRPrefsWindow"];
+    }
+    [prefsWindow showWindow:self];
+    [[prefsWindow window] makeMainWindow];
 }
 
 @end

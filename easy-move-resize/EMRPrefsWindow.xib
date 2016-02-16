@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="EMRPrefsWindowController">
+            <connections>
+                <outlet property="moveAltKeyButton" destination="0mI-JA-oLX" id="qe1-RD-DVr"/>
+                <outlet property="moveCmdKeyButton" destination="9bw-zT-WhK" id="hFx-kX-5Zk"/>
+                <outlet property="moveCtrlKeyButton" destination="e56-33-GVh" id="jwM-mF-fYU"/>
+                <outlet property="moveLeftMouseRadioButton" destination="V90-Ld-Ro1" id="dV3-Pu-NgT"/>
+                <outlet property="moveRightMouseRadioButton" destination="HUn-B0-j8C" id="C0N-f3-jK4"/>
+                <outlet property="moveShiftKeyButton" destination="EEf-B8-Jnq" id="sfT-Wl-fji"/>
+                <outlet property="resizeAltKeyButton" destination="BAR-lH-CFv" id="Lpo-E6-0yn"/>
+                <outlet property="resizeCmdKeyButton" destination="Y4D-D0-BXA" id="DHJ-Gg-nBO"/>
+                <outlet property="resizeCtrlKeyButton" destination="piq-P4-mQa" id="ctq-Yi-NXc"/>
+                <outlet property="resizeLeftMouseRadioButton" destination="3XJ-Zm-lG7" id="dNG-5F-og7"/>
+                <outlet property="resizeRightMouseRadioButton" destination="0iT-v2-UD9" id="5bb-al-D1X"/>
+                <outlet property="resizeShiftKeyButton" destination="GUd-pu-U34" id="86L-gv-tJx"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window identifier="Preferences" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="447" height="217"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <view key="contentView" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="447" height="217"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbI-Vd-CHW">
+                        <rect key="frame" x="18" y="181" width="114" height="18"/>
+                        <buttonCell key="cell" type="check" title="Move windows" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="vef-1D-fdB">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mdX-zb-LmN">
+                        <rect key="frame" x="18" y="102" width="121" height="18"/>
+                        <buttonCell key="cell" type="check" title="Resize windows" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="yfx-ed-8Rk">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e56-33-GVh">
+                        <rect key="frame" x="169" y="181" width="33" height="18"/>
+                        <buttonCell key="cell" type="check" title="⌃" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XRc-Z9-Pb2">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" size="13" name="LucidaGrande"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleMoveModiferButton:" target="-2" id="lyO-XY-veh"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0mI-JA-oLX">
+                        <rect key="frame" x="219" y="181" width="35" height="18"/>
+                        <buttonCell key="cell" type="check" title="⌥" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="98S-Jd-k6u">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" size="13" name="LucidaGrande"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleMoveModiferButton:" target="-2" id="TtO-UA-u7G"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bw-zT-WhK">
+                        <rect key="frame" x="269" y="181" width="35" height="18"/>
+                        <buttonCell key="cell" type="check" title="⌘" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ll3-ON-9is">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" size="13" name="LucidaGrande"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleMoveModiferButton:" target="-2" id="VzZ-pw-Or2"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EEf-B8-Jnq">
+                        <rect key="frame" x="319" y="181" width="35" height="18"/>
+                        <buttonCell key="cell" type="check" title="⇧" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="UOx-C3-59e">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" size="13" name=".LucidaGrandeUI"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleMoveModiferButton:" target="-2" id="kHx-Zi-Qrt"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="piq-P4-mQa">
+                        <rect key="frame" x="169" y="102" width="33" height="18"/>
+                        <buttonCell key="cell" type="check" title="⌃" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="2Lk-bq-quQ">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleResizeModiferButton:" target="-2" id="i3e-Nx-l89"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BAR-lH-CFv">
+                        <rect key="frame" x="219" y="102" width="35" height="18"/>
+                        <buttonCell key="cell" type="check" title="⌥" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="TdK-YP-ZoL">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleResizeModiferButton:" target="-2" id="mpc-9T-Y0N"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y4D-D0-BXA">
+                        <rect key="frame" x="269" y="102" width="35" height="18"/>
+                        <buttonCell key="cell" type="check" title="⌘" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="sHZ-Ff-scg">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleResizeModiferButton:" target="-2" id="R1l-V2-Pt9"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUd-pu-U34">
+                        <rect key="frame" x="319" y="102" width="35" height="18"/>
+                        <buttonCell key="cell" type="check" title="⇧" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="wAf-do-YgV">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="toggleResizeModiferButton:" target="-2" id="8er-WK-8QM"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V90-Ld-Ro1">
+                        <rect key="frame" x="267" y="158" width="46" height="18"/>
+                        <buttonCell key="cell" type="radio" title="Left" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="WCE-bD-YO5">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="setMoveMouseButton:" target="-2" id="aoy-IS-7pt"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HUn-B0-j8C">
+                        <rect key="frame" x="267" y="136" width="55" height="18"/>
+                        <buttonCell key="cell" type="radio" title="Right" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="iNz-nW-lUC">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="setMoveMouseButton:" target="-2" id="A5w-Kg-Nol"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3XJ-Zm-lG7">
+                        <rect key="frame" x="267" y="78" width="46" height="18"/>
+                        <buttonCell key="cell" type="radio" title="Left" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="NxK-LF-Lr3">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="setResizeMouseButton:" target="-2" id="5F3-mr-Bf9"/>
+                        </connections>
+                    </button>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0iT-v2-UD9">
+                        <rect key="frame" x="267" y="56" width="55" height="18"/>
+                        <buttonCell key="cell" type="radio" title="Right" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ph1-vm-UIG">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="setResizeMouseButton:" target="-2" id="EO2-V7-LcM"/>
+                        </connections>
+                    </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VsA-Bi-63Q">
+                        <rect key="frame" x="169" y="159" width="95" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mouse Button:" id="XIi-bv-l6Z">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QOg-vK-szh">
+                        <rect key="frame" x="169" y="79" width="95" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Mouse Button:" id="Ffc-Hc-H3E">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TLf-Ut-00J">
+                        <rect key="frame" x="362" y="13" width="71" height="32"/>
+                        <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="30X-J2-T18">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="savePreferences:" target="-2" id="e5Y-lk-oYj"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOz-68-VaL">
+                        <rect key="frame" x="279" y="13" width="83" height="32"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Rx5-vd-csi">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cancelPreferences:" target="-2" id="oIq-EY-OHU"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="515.5" y="463.5"/>
+        </window>
+    </objects>
+</document>

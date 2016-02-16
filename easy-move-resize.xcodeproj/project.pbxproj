@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5276012A1C6D0DD2005B84FD /* EMRPrefsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527601291C6D0DD2005B84FD /* EMRPrefsWindow.xib */; };
+		5276012D1C6D0FD6005B84FD /* EMRPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5276012C1C6D0FD6005B84FD /* EMRPrefsWindowController.m */; };
 		52B5E8F61C513E3D0055C181 /* EMRPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5E8F51C513E3D0055C181 /* EMRPreferences.m */; };
 		52B5E8F71C513E3D0055C181 /* EMRPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5E8F51C513E3D0055C181 /* EMRPreferences.m */; };
 		6ED47B65183BF3E800859244 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED47B64183BF3E800859244 /* Cocoa.framework */; };
@@ -35,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		527601291C6D0DD2005B84FD /* EMRPrefsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EMRPrefsWindow.xib; path = "easy-move-resize/EMRPrefsWindow.xib"; sourceTree = "<group>"; };
+		5276012B1C6D0FD6005B84FD /* EMRPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMRPrefsWindowController.h; path = "easy-move-resize/EMRPrefsWindowController.h"; sourceTree = "<group>"; };
+		5276012C1C6D0FD6005B84FD /* EMRPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMRPrefsWindowController.m; path = "easy-move-resize/EMRPrefsWindowController.m"; sourceTree = "<group>"; };
 		52B5E8F51C513E3D0055C181 /* EMRPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRPreferences.m; sourceTree = "<group>"; };
 		52B5E8F81C513E7A0055C181 /* EMRPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMRPreferences.h; sourceTree = "<group>"; };
 		6E238EE0184504BC00E47948 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -84,6 +89,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		521912E21C7268AE0036F939 /* Preferences Window */ = {
+			isa = PBXGroup;
+			children = (
+				527601291C6D0DD2005B84FD /* EMRPrefsWindow.xib */,
+				5276012B1C6D0FD6005B84FD /* EMRPrefsWindowController.h */,
+				5276012C1C6D0FD6005B84FD /* EMRPrefsWindowController.m */,
+			);
+			name = "Preferences Window";
+			path = ..;
+			sourceTree = "<group>";
+		};
 		6ED47B58183BF3E800859244 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +146,7 @@
 		6ED47B6A183BF3E800859244 /* easy-move-resize */ = {
 			isa = PBXGroup;
 			children = (
+				521912E21C7268AE0036F939 /* Preferences Window */,
 				6ED47B76183BF3E800859244 /* EMRAppDelegate.h */,
 				6ED47B77183BF3E800859244 /* EMRAppDelegate.m */,
 				6ED47B79183BF3E800859244 /* MainMenu.xib */,
@@ -217,6 +234,9 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = EMR;
+				KnownAssetTags = (
+					CTRL,
+				);
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Daniel Marcotte";
 				TargetAttributes = {
@@ -254,6 +274,7 @@
 				6ED47B7B183BF3E800859244 /* MainMenu.xib in Resources */,
 				F907ABDDEEAF5BF83F0AF9EA /* readme.md in Resources */,
 				F907A53FB2CAEBEB31895CD2 /* contributing.md in Resources */,
+				5276012A1C6D0DD2005B84FD /* EMRPrefsWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6ED47B71183BF3E800859244 /* main.m in Sources */,
+				5276012D1C6D0FD6005B84FD /* EMRPrefsWindowController.m in Sources */,
 				52B5E8F61C513E3D0055C181 /* EMRPreferences.m in Sources */,
 				6ED47B78183BF3E800859244 /* EMRAppDelegate.m in Sources */,
 				F907A25928093AED2C89550E /* EMRMoveResize.m in Sources */,

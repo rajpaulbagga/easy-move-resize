@@ -13,34 +13,61 @@
 
 @implementation EMRPreferences
 
-+ (int)modifierFlags {
-    int modifierFlags = 0;
-    
++ (int)moveModifierFlags {
+    return [self modifierFlagsForKey:MOVE_MODIFIER_FLAGS_DEFAULTS_KEY];
+}
+
++ (int)resizeModifierFlags {
+    return [self modifierFlagsForKey:RESIZE_MODIFIER_FLAGS_DEFAULTS_KEY];
+}
+
++ (int)modifierFlagsForKey:(NSString*)key {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSString *modifierFlagString = [defaults stringForKey:MODIFIER_FLAGS_DEFAULTS_KEY];
+    NSString *modifierFlagString = [defaults stringForKey:key];
     if (modifierFlagString == nil) {
         return DEFAULT_MODIFIER_FLAGS;
     }
-    
-    modifierFlags = [self flagsFromFlagString:modifierFlagString];
-    
-    return modifierFlags;
+    return [self flagsFromFlagString:modifierFlagString];
 }
 
-+ (void)setModifierFlagString:(NSString *)flagString {
+// -------------------------
++ (void)setMoveModifierFlagString:(NSString *)flagString {
+    [self setModifierFlagString:flagString forKey:MOVE_MODIFIER_FLAGS_DEFAULTS_KEY];
+}
+
++ (void)setResizeModifierFlagString:(NSString *)flagString {
+    [self setModifierFlagString:flagString forKey:RESIZE_MODIFIER_FLAGS_DEFAULTS_KEY];
+}
+
++ (void)setModifierFlagString:(NSString*)flagString forKey:(NSString*)key {
     flagString = [[flagString stringByReplacingOccurrencesOfString:@" " withString:@""] uppercaseString];
-    [[NSUserDefaults standardUserDefaults] setObject:flagString forKey:MODIFIER_FLAGS_DEFAULTS_KEY];
+    [[NSUserDefaults standardUserDefaults] setObject:flagString forKey:key];
 }
 
++ (void) setMoveModifierFlagSet:(NSSet*)flagStringSet {
+    [self setMoveModifierFlagString:[[flagStringSet allObjects] componentsJoinedByString:@","]];
+}
 
-+ (void)setModifierKey:(NSString *)singleFlagString enabled:(BOOL)enabled {
++ (void) setResizeModifierFlagSet:(NSSet*)flagStringSet {
+    [self setResizeModifierFlagString:[[flagStringSet allObjects] componentsJoinedByString:@","]];
+}
+
+// -------------------------
++ (void)setMoveModifierKey:(NSString *)singleFlagString enabled:(BOOL)enabled {
+    [self setModifierKey:singleFlagString enabled:enabled forDefaultsKey:MOVE_MODIFIER_FLAGS_DEFAULTS_KEY];
+}
+
++ (void)setResizeModifierKey:(NSString *)singleFlagString enabled:(BOOL)enabled {
+    [self setModifierKey:singleFlagString enabled:enabled forDefaultsKey:RESIZE_MODIFIER_FLAGS_DEFAULTS_KEY];
+}
+
++ (void)setModifierKey:(NSString *)singleFlagString enabled:(BOOL)enabled forDefaultsKey:(NSString*)defaultsKey {
     singleFlagString = [singleFlagString uppercaseString];
-    NSString *modifierFlagString = [[NSUserDefaults standardUserDefaults] stringForKey:MODIFIER_FLAGS_DEFAULTS_KEY];
+    NSString *modifierFlagString = [[NSUserDefaults standardUserDefaults] stringForKey:defaultsKey];
     if (modifierFlagString == nil) {
         // No prior value set. Set if enabled.
         if (enabled) {
-            [self setModifierFlagString:singleFlagString];
+            [self setMoveModifierFlagString:singleFlagString];
             return;
         }
     }
@@ -51,11 +78,20 @@
     else {
         [flagSet removeObject:singleFlagString];
     }
-    [self setModifierFlagString:[[flagSet allObjects] componentsJoinedByString:@","]];
+    [self setMoveModifierFlagString:[[flagSet allObjects] componentsJoinedByString:@","]];
 }
 
-+ (NSSet*)getFlagStringSet {
-    NSString *modifierFlagString = [[NSUserDefaults standardUserDefaults] stringForKey:MODIFIER_FLAGS_DEFAULTS_KEY];
+// -------------------------
++ (NSSet*)moveFlagStringSet {
+    return [self flagStringSetForKey:MOVE_MODIFIER_FLAGS_DEFAULTS_KEY];
+}
+
++ (NSSet*)resizeFlagStringSet {
+    return [self flagStringSetForKey:RESIZE_MODIFIER_FLAGS_DEFAULTS_KEY];
+}
+
++ (NSSet*)flagStringSetForKey:(NSString*)key {
+    NSString *modifierFlagString = [[NSUserDefaults standardUserDefaults] stringForKey:key];
     if (modifierFlagString == nil) {
         return [NSSet setWithObjects:CTRL_KEY, CMD_KEY, nil];
     }
@@ -63,8 +99,12 @@
     return flagSet;
 }
 
+// -------------------------
 + (void) removeDefaults {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:MODIFIER_FLAGS_DEFAULTS_KEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:MOVE_MODIFIER_FLAGS_DEFAULTS_KEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:RESIZE_MODIFIER_FLAGS_DEFAULTS_KEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:MOVE_MOUSE_BUTTON_DEFAULTS_KEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:RESIZE_MOUSE_BUTTON_DEFAULTS_KEY];
 }
 
 + (eMouseButton) moveMouseButton {
