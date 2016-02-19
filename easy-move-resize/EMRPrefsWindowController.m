@@ -10,12 +10,42 @@
 
 @implementation EMRPrefsWindowController
 
--(id)init {
+-(void)awakeFromNib{
     [self setMoveFlags:[[NSMutableSet alloc] initWithSet:[EMRPreferences moveFlagStringSet]]];
     [self setResizeFlags:[[NSMutableSet alloc] initWithSet:[EMRPreferences resizeFlagStringSet]]];
     [self setSelectedMoveMouseButton:[EMRPreferences moveMouseButton]];
     [self setSelectedResizeMouseButton:[EMRPreferences resizeMouseButton]];
-    return self;
+    [self initModifierButtonStates];
+}
+
+- (void)initModifierButtonStates {
+    NSSet* moveFlags = [self moveFlags];
+    if ([moveFlags containsObject:ALT_KEY]) {
+        [[self moveAltKeyButton] setState:1];
+    }
+    if ([moveFlags containsObject:CMD_KEY]) {
+        [[self moveCmdKeyButton] setState:1];
+    }
+    if ([moveFlags containsObject:CTRL_KEY]) {
+        [[self moveCtrlKeyButton] setState:1];
+    }
+    if ([moveFlags containsObject:SHIFT_KEY]) {
+        [[self moveShiftKeyButton] setState:1];
+    }
+
+    NSSet* resizeFlags = [self resizeFlags];
+    if ([resizeFlags containsObject:ALT_KEY]) {
+        [[self resizeAltKeyButton] setState:1];
+    }
+    if ([resizeFlags containsObject:CMD_KEY]) {
+        [[self resizeCmdKeyButton] setState:1];
+    }
+    if ([resizeFlags containsObject:CTRL_KEY]) {
+        [[self resizeCtrlKeyButton] setState:1];
+    }
+    if ([resizeFlags containsObject:SHIFT_KEY]) {
+        [[self resizeShiftKeyButton] setState:1];
+    }
 }
 
 -(void) open {
